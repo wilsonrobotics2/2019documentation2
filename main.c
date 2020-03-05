@@ -1,36 +1,33 @@
-#include <kipr/botball.h>
+#include <kipr/wombat.h>
 
 int main()
-{ 
- int right_sensor = analog(3);
- int left_sensor = analog(5);
- int light_sensor = analog(0); 
- printf("Must not touch the black lines");
-
-wait_for_light(light_sensor); 
+{
+    printf("Hello World\n");
     
- motor(0,100);
- motor(3,100);
- msleep(1000);
+    //This part of code makes claw move downward because it starts facing upward so it won't start illegally
+    motor(3,-20);
+    msleep(1000);
     
- while ((right_sensor< 1100) && left_sensor<1100)
- {
-     motor(0,100);
-     motor(3,100);
-     msleep(6000);
- } 
-
- while (analog(5) >1100)
- {
-     motor(0,90);
-     motor(3,80);
- }    
-
- while (analog(3) >1100)
- {
-     motor(0,80);
-     motor(3,90);
- }
- ao();
- return 0;
+    //This part of code makes robot move forward in order to knock down the stack of the 3 processed iron boxes and the 3 processed quicklime boxes
+    motor(0,100);
+    motor(1,100);
+    msleep(3000);
+    
+    //This part of code makes robot go backwards into mineral lab
+    motor(0,-100);
+    motor(1,-100);
+    msleep(3000);
+    
+    motor(0,50);
+    motor(1,50);
+    msleep(1500);
+    
+    motor(0,0);
+    motor(1,50);
+    msleep(1000);
+    
+    motor(0,100);
+    motor(1,100);
+    msleep(1500);
+    return 0;
 }
